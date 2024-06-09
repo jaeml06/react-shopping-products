@@ -1,12 +1,20 @@
-import { useState } from "react";
+import './reset.css';
+import './index.css';
 
+import ProductPage from './page/ProductPage';
+import { ToastContextProvider } from './context/ToastContextProvider';
+import { CartProvider } from './context/ShoppingCartContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+const queryClient = new QueryClient();
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>React Shopping Products</h1>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <ToastContextProvider>
+        <CartProvider>
+          <ProductPage />
+        </CartProvider>
+      </ToastContextProvider>
+    </QueryClientProvider>
   );
 }
 
